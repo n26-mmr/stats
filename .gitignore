@@ -7,4 +7,5 @@
 *.iws
 
 # Build
-build/*
+build
+out
