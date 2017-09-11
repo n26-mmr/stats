@@ -16,7 +16,7 @@ public class StorageService {
         this.reset();
     }
 
-    void add(TransactionModel t) {
+    public void add(TransactionModel t) {
         long curCount = count.incrementAndGet();
         double amount = t.getAmount();
         double curSum = sum + amount;
