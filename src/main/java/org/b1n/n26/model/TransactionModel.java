@@ -1,10 +1,10 @@
 package org.b1n.n26.model;
 
-import java.time.Instant;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TransactionModel {
 
-    private static final Long MAX_TIME_TO_CONSIDER_IN_MILLIS = 60000L;
+    public static final Long MAX_TIME_TO_CONSIDER_IN_MILLIS = 60000L;
 
     private Long timestamp;
 
@@ -14,9 +14,9 @@ public class TransactionModel {
         // ...
     }
 
-    public TransactionModel(Long timestamp, Double amount) {
-        this.timestamp = timestamp;
+    public TransactionModel(Double amount, Long timestamp) {
         this.amount = amount;
+        this.timestamp = timestamp;
     }
 
     public Long getTimestamp() {
@@ -27,6 +27,7 @@ public class TransactionModel {
         return amount;
     }
 
+    @JsonIgnore
     public boolean isTooOld() {
         return this.timestamp < System.currentTimeMillis() - MAX_TIME_TO_CONSIDER_IN_MILLIS;
     }

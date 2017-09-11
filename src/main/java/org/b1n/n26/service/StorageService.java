@@ -10,11 +10,10 @@ import java.util.concurrent.atomic.AtomicLong;
 public class StorageService {
     private Double sum, avg, max, min;
 
-    private final AtomicLong count;
+    private AtomicLong count;
 
     public StorageService() {
-        sum = avg = max = min = 0d;
-        count = new AtomicLong(0L);
+        this.reset();
     }
 
     void add(TransactionModel t) {
@@ -34,5 +33,10 @@ public class StorageService {
 
     StatsModel getStats() {
         return new StatsModel(sum, avg, max, min, count.get());
+    }
+
+    public void reset() {
+        sum = avg = max = min = 0d;
+        count = new AtomicLong(0L);
     }
 }
