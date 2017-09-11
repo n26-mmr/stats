@@ -1,9 +1,18 @@
 package org.b1n.n26.model;
 
-public class TransactionModel {
-    private final Long timestamp;
+import java.time.Instant;
 
-    private final Double amount;
+public class TransactionModel {
+
+    private static final Long MAX_TIME_TO_CONSIDER_IN_MILLIS = 60000L;
+
+    private Long timestamp;
+
+    private Double amount;
+
+    public TransactionModel() {
+        // ...
+    }
 
     public TransactionModel(Long timestamp, Double amount) {
         this.timestamp = timestamp;
@@ -16,5 +25,9 @@ public class TransactionModel {
 
     public Double getAmount() {
         return amount;
+    }
+
+    public boolean isTooOld() {
+        return this.timestamp < System.currentTimeMillis() - MAX_TIME_TO_CONSIDER_IN_MILLIS;
     }
 }

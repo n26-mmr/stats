@@ -2,8 +2,6 @@ package org.b1n.n26.model;
 
 public class StatsModel {
 
-    public static final StatsModel ZERO = new StatsModel(0d, 0d, 0d, 0d, 0L);
-
     private final Double sum, avg, max, min;
 
     private final Long count;
